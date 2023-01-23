@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 module.exports = {
     list: (req,res) => {
-        db.Usuarios
+        db.user
         .findAll()
         .then(usuarios =>{
             return res.status(200).json({
@@ -15,7 +15,7 @@ module.exports = {
         } )
     },
     show: (req,res)=>{
-        db.Usuarios
+        db.user
         .findByPk(req.params.id)
         .then (usuarios =>{
             return res.status(200).json({
@@ -25,7 +25,7 @@ module.exports = {
         })
     },
     store : (req,res)=>{
-        db.Usuarios
+        db.user
         .create(req.body)
         .then (usuarios =>{
             return res.status(200).json({
@@ -37,7 +37,7 @@ module.exports = {
 
     },
     delete: (req,res)=>{
-        db.Usuarios
+        db.user
         .destroy({
         where: {
             id: req.params.id
@@ -48,7 +48,7 @@ module.exports = {
         })
     },
     search : (req, res)=>{
-        db.Usuarios
+        db.user
         .findAll({
             where: {
                 name: { [Op.like]: '%' + req.query.keyword + '%' }

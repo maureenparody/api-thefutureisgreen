@@ -3,14 +3,14 @@ const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const productosRoutes = require('./routers/productosRouters');  // Enrutador
-
+const usuariosRoutes = require('./routers/usuariosRouters');
 const app = express();
 
 app.set('view engine', 'ejs')   // Seteo el motor de plantillas ejs
 
 app.set('views', 'rutaCarpetaVistas')  // Opcional. Solamente si quiero cambiar mi carpeta views
 
-app.use(ErrorMiddleware);   // Opcional. Aplicar middleware a nivel aplicación
+//app.use(ErrorMiddleware);   // Opcional. Aplicar middleware a nivel aplicación
 
 app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.static(path.resolve(__dirname, './views')));
