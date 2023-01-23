@@ -1,38 +1,69 @@
-
-'use strict';
-
-module.exports = (sequelize, DataTypes) => {
-    const users = sequelize.define('Usuarios', {
-        id: Datatypes.INTEGER,
-        name:  Datatypes.STRING(80),
-        surname: Datatypes.STRING(80),
-        email:  Datatypes.STRING(90),
-        password: Datatypes.STRING(255),
-        address_street: Datatypes.STRING(100),
-        address_extra:  Datatypes.STRING(100),
-        address_city: Datatypes.STRING(100),
-        address_zipcode:  Datatypes.INTEGER,
-        address_state: Datatypes.STRING(100),
-        profile_image: Datatypes.STRING(255),
-        telephone: Datatypes.INTEGER,
-        role_id: Datatypes.INTEGER
+function userData(sequelize, Datatypes){
+    alias = 'user';
+        cols = {
+        id:{
+            type: Datatypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        name: {
+            type: Datatypes.STRING(80),
+            allowNull: false
+        },
+        surname: {
+            type: Datatypes.STRING(80),
+            allowNull: false
+        },
+        dni: {
+            type: Datatypes.STRING(9)
+        },
+        email: {
+            type: Datatypes.STRING(90)
+        },
+        password: {
+            type: Datatypes.STRING(255)
+        },
+        address_street: {
+            type: Datatypes.STRING(100)
+        },
+        address_extra: {
+            type: Datatypes.STRING(100)
+        },
+        address_city: {
+            type: Datatypes.STRING(100)
+        },
+        address_zipcode: {
+            type: Datatypes.INTEGER
+        },
+        address_state: {
+            type: Datatypes.STRING(100)
+        },
+        profile_image: {
+            type: Datatypes.STRING(255)
+        },
+        telephone: {
+            type: Datatypes.INTEGER
+        },
+        role_id: {
+            type: Datatypes.INTEGER
         }
-        ,{
+    }
+    config = {timestamps: false, freezeTableName: true};
+ const usuario = sequelize.define(alias,cols,config);
 
-        });
+ usuario.associate = function (modelos){
 
-        users.associate = function (models){
-
-            users.belongsTo(models.role, {   
-       as: "role",
+    usuario.belongsTo(modelos.role, {   
+       as: "rol",
        foreignKey: "role_id"
         });
 
-        users.hasMany(models.sale, {
-         as: "sale",
+    usuario.hasMany(modelos.sale, {
+         as: "venta",
          foreignKey: "user_id"
         });
     };
   
- return users
+ return usuario
 } 
+module.exports = userData;

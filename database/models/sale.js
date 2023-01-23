@@ -1,42 +1,60 @@
- 
-'use strict';
+const { INTEGER } = require("sequelize");
 
-module.exports = (sequelize, DataTypes) => {
-    const sale = sequelize.define('Ventas', {
-        id: Datatypes.INTEGER,
-        user_id:Datatypes.INTEGER,
-        product_id: Datatypes.INTEGER,
-        payment_method_id: Datatypes.INTEGER,
-        unit_amount: Datatypes.DECIMAL(10,2),
-        quantity:  Datatypes.INTEGER,
-        sale_detail_id:  Datatypes.INTEGER
+function saleData(sequelize, Datatypes){
+    alias = 'sale';
+        cols = {
+        id:{
+            type: Datatypes.INTEGER,
+            primaryKey: true,
+            autoIncremental: true
+        },
+        user_id:{
+            type: Datatypes.INTEGER
+        },
+        product_id:{
+            type: Datatypes.INTEGER,
+            allowNull: true
+        },
+        payment_method_id: {
+            type: Datatypes.INTEGER,
+        },
+        unit_amount:{
+            type: Datatypes.DECIMAL(10,2),
+            allowNull: false
+        },
+        quantity: {
+            type: Datatypes.INTEGER
+        },
+        sale_detail_id: {
+            type: Datatypes.INTEGER,
+            allowNull: false
+        }
     }
-    ,{
+    config = {timestamps: false};
+ const venta = sequelize.define(alias,cols,config);
 
-    });
+ venta.associate = function (modelos){
 
- sale.associate = function (models){
-
-    sale.belongsTo(models.user, {   
-       as: "users",
+    venta.belongsTo(modelos.user, {   
+       as: "usuario",
        foreignKey: "user_id"
         });
-    sale.belongsTo(models.products, {   
-        as: "products",
+    venta.belongsTo(modelos.products, {   
+        as: "productos",
         foreignKey: "product_id"
         });
-    sale.belongsTo(models.payment_method, {   
-        as: "payment_method",
+    venta.belongsTo(modelos.payment_method, {   
+        as: "metodo_pago",
         foreignKey: "payment_method_id"
         });
-    sale.belongsTo(models.sale_detail, {   
-        as: "sale_detail",
+    venta.belongsTo(modelos.sale_detail, {   
+        as: "detalle_venta",
         foreignKey: "sale_detail_id"
         });
     };
 
 
- return sale
+ return venta
 } 
 
-
+module.exports = saleData;

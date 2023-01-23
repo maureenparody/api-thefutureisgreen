@@ -1,24 +1,28 @@
-'use strict';
-
-module.exports = (sequelize, DataTypes) => {
-    const role = sequelize.define('Roles', {
-        id: Datatypes.INTEGER,
-        name: Datatypes.STRING(45),
-
+function roleData(sequelize, Datatypes){
+    alias = 'role';
+        cols = {
+        id:{
+            type: Datatypes.INTEGER,
+            primaryKey: true,
+            autoIncremental: true
+        },
+        name: {
+            type: Datatypes.STRING(45),
+            allowNull: false
+        }
     }
-    ,{
+    config = {timestamps: false};
+ const rol = sequelize.define(alias,cols,config);
 
-    });
+ rol.associate = function (modelos){
 
- role.associate = function (models){
-
-    role.hasMany(models.user, {
-       as: "user",
+    rol.hasMany(modelos.user, {
+       as: "usuario",
        foreignKey: "role_id"
         });
 };
 
- return role
+ return rol
 } 
 
-
+module.exports = roleData;
