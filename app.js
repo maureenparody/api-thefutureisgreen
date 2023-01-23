@@ -4,6 +4,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const productosRoutes = require('./routers/productosRouters');  // Enrutador
 const usuariosRoutes = require('./routers/usuariosRouters');
+const mainRouter = require('./routers/mainRouter');
 const app = express();
 
 app.set('view engine', 'ejs')   // Seteo el motor de plantillas ejs
@@ -16,6 +17,7 @@ app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.static(path.resolve(__dirname, './views')));
 
 //app.use('/', productosRoutes);   // Definición de ruta global para un enrutador particular
+app.use('/', mainRouter);
 app.use('/productos', productosRoutes);
 app.use('/usuarios', usuariosRoutes);
 
