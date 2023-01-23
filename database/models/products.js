@@ -17,18 +17,18 @@ module.exports = (sequelize, DataTypes) => {
     },{
 
     });
-    productos.associate = function (modelos){
+    products.associate = function (models){
 
-        productos.belongsTo(modelos.product_category, {   
+        products.belongsTo(models.product_category, {   
            as: "categoria_producto",
            foreignKey: "product_category_id"
             });
-        productos.belongsTo(modelos.supplier, {   
+            products.belongsTo(models.supplier, {   
             as: "provedor",
             foreignKey: "supplier_id"
             });
     
-        productos.hasMany(modelos.sale, {
+            products.hasMany(models.sale, {
             as: "venta",
             foreignKey: "product_id"
             });
