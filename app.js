@@ -1,22 +1,24 @@
 const express = require('express');
-const path = require('path’); 
-const methodOverride = require('method-override’);
-const session = require('express-session’);
-const ErrorMiddleware = require('./middlewares/ErrorMiddleware’);
-const productosRoutes = require('./routes/productosRoutes’);  // Enrutador
+const path = require('path'); 
+const methodOverride = require('method-override');
+const session = require('express-session');
+const ErrorMiddleware = require('./middlewares/ErrorMiddleware');
+const productosRoutes = require('./routes/productosRoutes');  // Enrutador
 
 const app = express();
 
 app.set('view engine', 'ejs')   // Seteo el motor de plantillas ejs
 
-app.set('views', 'rutaCarpetaVistas’)  // Opcional. Solamente si quiero cambiar mi carpeta views
+app.set('views', 'rutaCarpetaVistas')  // Opcional. Solamente si quiero cambiar mi carpeta views
 
 app.use(ErrorMiddleware);   // Opcional. Aplicar middleware a nivel aplicación
 
 app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.static(path.resolve(__dirname, './views')));
 
-app.use('/', productosRoutes);   // Definición de ruta global para un enrutador particular
+//app.use('/', productosRoutes);   // Definición de ruta global para un enrutador particular
+app.use('/productos', productosRoutes);
+app.use('/usuarios', usuariosRoutes);
 
 app.use(session( {secret: "Este es mi secreto"} ));    // para definir que vas a utilizar información en sesión
 
