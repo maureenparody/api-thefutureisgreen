@@ -2,8 +2,7 @@ const express = require('express');
 const path = require('path'); 
 const methodOverride = require('method-override');
 const session = require('express-session');
-const ErrorMiddleware = require('./middlewares/ErrorMiddleware');
-const productosRoutes = require('./routes/productosRoutes');  // Enrutador
+const productosRoutes = require('./routers/productosRouters');  // Enrutador
 
 const app = express();
 

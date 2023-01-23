@@ -1,4 +1,37 @@
-{
+
+  
+    {
+
+      "name": "Api trabajointegrador",
+    
+      "version": "1.0.0",
+    
+      "description": "- Nuestro proyecto integrador es crear un E-commerce de un growshop que se dedica a la venta de insumos de Cannabis. Incluyendo información necesaria para quienes quieran incursionar en el tema incluido el marco legal.",
+    
+      "main": "app.js",
+    
+      "scripts": {
+    
+        "test": "echo \"Error: no test specified\" && exit 1",
+    
+        "start": "nodemon ./app.js"
+    
+      },
+    
+      "keywords": [],
+    
+      "author": "",
+    
+      "license": "ISC",
+    
+      "repository": {
+    
+        "type": "git",
+    
+        "url": "git+https://github.com/maureenparody/api-thefutureisgreen.git"
+    
+      },
+    
   "dependencies": {
     "axios": "^1.2.3",
     "bcryptjs": "^2.4.3",
