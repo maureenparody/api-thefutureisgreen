@@ -1,27 +1,22 @@
-function payment_methodData(sequelize, Datatypes){
-    alias = 'payment_method';
-        cols = {
-        id:{
-            type: Datatypes.INTEGER,
-            primaryKey: true,
-            autoIncremental: true
-        },
-        name: {
-            type: Datatypes.STRING(45),
-            allowNull: false
-        }
-    }
-    config = {timestamps: false};
- const metodo_pago = sequelize.define(alias,cols,config);
+'use strict';
 
- metodo_pago.associate = function (modelos){
-    metodo_pago.hasMany(modelos.sale, {
-       as: "venta",
+module.exports = (sequelize, DataTypes) => {
+    const payment_method = sequelize.define('Suppliers', {
+        id:Datatypes.INTEGER,
+        name:  Datatypes.STRING(45)
+    }
+    ,{
+
+    });
+
+ payment_method.associate = function (models){
+    payment_method.hasMany(models.sale, {
+       as: "sale",
        foreignKey: "payment_method_id"
        })
    };
 
- return metodo_pago;
+ return payment_method;
 } 
 
-module.exports = payment_methodData;
+

@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
         users.associate = function (models){
 
             users.belongsTo(models.role, {   
-       as: "rol",
+       as: "role",
        foreignKey: "role_id"
         });
 
         users.hasMany(models.sale, {
-         as: "venta",
+         as: "sale",
          foreignKey: "user_id"
         });
     };

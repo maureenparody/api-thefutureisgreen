@@ -1,28 +1,23 @@
-function product_categoryData(sequelize, Datatypes){
-    alias = 'product_category';
-        cols = {
-        id:{
-            type: Datatypes.INTEGER,
-            primaryKey: true,
-            autoIncremental: true
-        },
-        name: {
-            type: Datatypes.STRING(45),
-            allowNull: false
+'use strict';
+
+module.exports = (sequelize, DataTypes) => {
+    const product_category = sequelize.define('Categories', {
+        id: Datatypes.INTEGER,
+        name: Datatypes.STRING(45),
         }
-    }
-    config = {timestamps: false};
- const categoria_producto = sequelize.define(alias,cols,config);
+        ,{
+    
+        });
 
- categoria_producto.associate = function (modelos){
+        product_category.associate = function (models){
 
-    categoria_producto.hasMany(modelos.products, {
-       as: "productos",
+            product_category.hasMany(models.products, {
+       as: "products",
        foreignKey: "product_category_id"
         });
 };
 
- return categoria_producto
+ return product_category
 } 
 
-module.exports = product_categoryData;
+
